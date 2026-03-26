@@ -2,91 +2,728 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Edgar | Sistemas Inteligentes</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Innova CRM | Sistemas Inteligentes a Medida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #0f172a;
-      color: white;
-      text-align: center;
+    :root {
+      --bg: #060a10;
+      --surface: #0d1520;
+      --surface-2: #111d2e;
+      --border: rgba(99,210,255,0.10);
+      --accent: #00e5ff;
+      --accent-dim: rgba(0,229,255,0.12);
+      --accent-glow: rgba(0,229,255,0.35);
+      --green: #00ff88;
+      --green-dim: rgba(0,255,136,0.10);
+      --text: #e8f4ff;
+      --muted: #6b8eaa;
+      --wa: #25D366;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID NOISE BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── GLOW ORBS ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+    }
+    .orb-1 { width: 600px; height: 600px; background: #00e5ff; top: -200px; left: -100px; animation: drift 18s ease-in-out infinite alternate; }
+    .orb-2 { width: 500px; height: 500px; background: #00ff88; bottom: -150px; right: -80px; animation: drift 22s ease-in-out infinite alternate-reverse; }
+    .orb-3 { width: 350px; height: 350px; background: #0062ff; top: 45%; left: 55%; animation: drift 14s ease-in-out infinite alternate; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(40px, 30px) scale(1.05); }
+    }
+
+    /* ── LAYOUT ── */
+    .wrap { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(6,10,16,0.72);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    .logo span { color: var(--accent); }
+    nav a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+    nav .nav-links { display: flex; gap: 32px; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 180px 0 120px;
+      text-align: center;
+      animation: fadeUp 0.9s cubic-bezier(.22,1,.36,1) both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(0,229,255,0.25);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.9s 0.1s cubic-bezier(.22,1,.36,1) both;
+    }
+    .badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
     }
 
     h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(42px, 7vw, 76px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+      animation: fadeUp 0.9s 0.2s cubic-bezier(.22,1,.36,1) both;
+    }
+    h1 .line-accent {
+      display: block;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--green) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    p {
-      color: #cbd5e1;
+    .hero-sub {
       font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+      font-weight: 300;
+      animation: fadeUp 0.9s 0.3s cubic-bezier(.22,1,.36,1) both;
     }
 
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.9s 0.4s cubic-bezier(.22,1,.36,1) both;
     }
 
+    /* ── BUTTONS ── */
     .btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background: #22c55e;
-      color: black;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
       text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(.22,1,.36,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #060a10;
+      box-shadow: 0 0 32px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      background: #33eeff;
+      transform: translateY(-2px);
+      box-shadow: 0 0 48px var(--accent-glow);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: rgba(0,229,255,0.4);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .btn-wa {
+      background: var(--wa);
+      color: #fff;
+      box-shadow: 0 0 28px rgba(37,211,102,0.3);
+    }
+    .btn-wa:hover {
+      background: #20b858;
+      transform: translateY(-2px);
+      box-shadow: 0 0 44px rgba(37,211,102,0.45);
+    }
+
+    /* ── STATS ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 80px 0;
+      animation: fadeUp 0.9s 0.5s cubic-bezier(.22,1,.36,1) both;
+    }
+    .stat {
+      background: var(--surface);
+      padding: 32px 24px;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .stat:hover { background: var(--surface-2); }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label { font-size: 13px; color: var(--muted); font-weight: 400; }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .section-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .section-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+    .section-header p {
+      color: var(--muted);
+      font-size: 16px;
+      margin-top: 14px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── PROJECTS ── */
+    section { padding: 80px 0; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(.22,1,.36,1);
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(0,229,255,0.05), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-card:hover {
+      border-color: rgba(0,229,255,0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+    }
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .card-icon {
+      width: 52px; height: 52px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(0,229,255,0.2);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .project-card.featured .card-icon { margin-bottom: 0; }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(0,229,255,0.15);
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+    .project-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+    .project-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
+
+    .card-features {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+    .card-features li {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-features li::before {
+      content: '';
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--green-dim);
+      border: 1.5px solid var(--green);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%2300ff88' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 10px;
+    }
+
+    .coming-soon {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(107,142,170,0.08);
+      border: 1px solid rgba(107,142,170,0.15);
+      padding: 6px 14px;
       border-radius: 8px;
-      font-weight: bold;
+      font-weight: 500;
     }
 
-    .btn:hover {
-      background: #16a34a;
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: all 0.3s cubic-bezier(.22,1,.36,1);
+    }
+    .service-card:hover {
+      border-color: rgba(0,229,255,0.2);
+      background: var(--surface-2);
+      transform: translateY(-3px);
+    }
+    .service-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .service-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+    .service-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-weight: 300;
     }
 
-    .whatsapp {
-      background: #25D366;
-      color: black;
+    /* ── CONTACT ── */
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 64px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 50%; transform: translateX(-50%);
+      width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .contact-card h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .contact-card p {
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 300;
+      max-width: 420px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+    }
+    footer p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    footer span { color: var(--accent); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* ── MOUSE TRACKING ── */
+    @media (max-width: 700px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      nav .nav-links { display: none; }
+      h1 { letter-spacing: -1.5px; }
+      .stats { grid-template-columns: 1fr; }
+      .contact-card { padding: 40px 24px; }
     }
   </style>
 </head>
-
 <body>
 
-  <div class="container">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
 
-    <h1>🚀 Sistemas a Medida</h1>
-    <p>Automatizo procesos y desarrollo sistemas internos con Google Apps Script</p>
-
-    <div class="card">
-      <h2>🏭 CRM Innova</h2>
-      <p>Sistema para gestionar clientes, proyectos y cotizaciones en procesos industriales.</p>
-      <a class="btn" href="https://script.google.com/macros/s/AKfycbwtx3THbfPcc-oZuL0F2Rr97ExY-WuWtyCaQib4TBFPq8gSSuzl-q9dFSFtCVSAD-wd/exec" target="_blank">
-        Ver proyecto
+  <!-- NAV -->
+  <nav>
+    <div class="inner">
+      <div class="logo">Innova<span>CRM</span></div>
+      <div class="nav-links">
+        <a href="#proyectos">Proyectos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <a class="btn btn-primary" href="https://wa.me/523339732375" target="_blank" style="padding:10px 20px;font-size:13px;">
+        Hablar ahora
       </a>
     </div>
+  </nav>
 
-    <div class="card">
-      <h2>🚗 MP Trámites</h2>
-      <p>Sistema de gestión para trámites vehiculares con seguimiento operativo.</p>
+  <!-- HERO -->
+  <div class="wrap">
+    <div class="hero">
+      <div class="badge">Sistemas a medida · Google Apps Script</div>
+      <h1>
+        Automatiza tu negocio.
+        <span class="line-accent">Escala sin límites.</span>
+      </h1>
+      <p class="hero-sub">
+        Desarrollo sistemas internos, CRMs y automatizaciones personalizadas que eliminan el trabajo manual y potencian la productividad de tu equipo.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#proyectos">Ver proyectos →</a>
+        <a class="btn btn-ghost" href="#servicios">¿Qué ofrezco?</a>
+      </div>
     </div>
 
-    <div class="card">
-      <h2>📲 Contacto</h2>
-      <p>¿Quieres un sistema así para tu negocio?</p>
-      <a class="btn whatsapp" href="https://wa.me/523339732375" target="_blank">
-        Enviar WhatsApp
-      </a>
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Sistemas personalizados</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0 código</div>
+        <div class="stat-label">Para el equipo — todo visual</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Google</div>
+        <div class="stat-label">Ecosistema integrado</div>
+      </div>
     </div>
-
   </div>
 
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="proyectos">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-tag">Portafolio</div>
+        <h2>Proyectos desarrollados</h2>
+        <p>Sistemas reales, en producción, resolviendo problemas reales.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- FEATURED -->
+        <div class="project-card featured" id="card-crm">
+          <div>
+            <div class="card-icon">🏭</div>
+            <div class="card-tag">CRM Industrial</div>
+            <h3>Innova CRM</h3>
+            <p>Sistema completo para gestionar clientes, proyectos, cotizaciones y seguimiento de procesos industriales. Centraliza la operación en Google Workspace.</p>
+            <a class="btn btn-primary" href="https://script.google.com/macros/s/AKfycbwtx3THbfPcc-oZuL0F2Rr97ExY-WuWtyCaQib4TBFPq8gSSuzl-q9dFSFtCVSAD-wd/exec" target="_blank">
+              Ver sistema en vivo →
+            </a>
+          </div>
+          <div>
+            <ul class="card-features">
+              <li>Gestión de clientes y pipeline de ventas</li>
+              <li>Cotizaciones y seguimiento de proyectos</li>
+              <li>Reportes automáticos en Google Sheets</li>
+              <li>Notificaciones y alertas por email</li>
+              <li>Panel de control en tiempo real</li>
+              <li>Acceso multiusuario con permisos</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="project-card">
+          <div class="card-icon">🚗</div>
+          <div class="card-tag">Gestión Operativa</div>
+          <h3>MP Trámites</h3>
+          <p>Sistema de gestión para trámites vehiculares con seguimiento operativo por etapas, asignación de responsables y control de estatus.</p>
+          <div class="coming-soon">🔒 En desarrollo</div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="project-card">
+          <div class="card-icon">⚙️</div>
+          <div class="card-tag">Automatización</div>
+          <h3>¿Tu sistema aquí?</h3>
+          <p>Cada negocio tiene procesos únicos. Diseño sistemas 100% a la medida de tu operación, sin herramientas genéricas que no encajan.</p>
+          <a class="btn btn-ghost" href="https://wa.me/523339732375" target="_blank" style="font-size:13px;padding:10px 18px;">Platícame tu idea →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SERVICES -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-tag">Servicios</div>
+        <h2>¿En qué te puedo ayudar?</h2>
+        <p>Soluciones dentro del ecosistema de Google, sin costos de servidores ni licencias caras.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-icon">📋</span>
+          <h4>CRMs a medida</h4>
+          <p>Sistemas de gestión de clientes, ventas y seguimiento adaptados a tu proceso comercial.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">⚡</span>
+          <h4>Automatización de procesos</h4>
+          <p>Elimina tareas repetitivas con flujos automáticos en Google Apps Script y Google Workspace.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">📊</span>
+          <h4>Dashboards y reportes</h4>
+          <p>Paneles de control con datos en tiempo real conectados a tus hojas de cálculo existentes.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">📬</span>
+          <h4>Notificaciones inteligentes</h4>
+          <p>Alertas automáticas por correo, WhatsApp o Telegram en los momentos que importan.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🗂️</span>
+          <h4>Gestión documental</h4>
+          <p>Generación automática de contratos, cotizaciones y reportes con datos de tus formularios.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🔗</span>
+          <h4>Integraciones Google</h4>
+          <p>Conecta Forms, Sheets, Drive, Gmail y Calendar en un solo sistema coherente y eficiente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contacto">
+    <div class="wrap" style="padding-bottom: 100px;">
+      <div class="contact-card">
+        <div class="badge" style="margin-bottom:28px;">Hablemos</div>
+        <h2>¿Listo para automatizar<br>tu operación?</h2>
+        <p>Cuéntame cómo funciona tu negocio y diseñamos juntos el sistema que necesitas. Sin costo inicial de consulta.</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+          <a class="btn btn-wa" href="https://wa.me/523339732375" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.563 4.14 1.544 5.876L.057 23.5l5.765-1.513A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.491-5.19-1.352l-.37-.22-3.864 1.013 1.033-3.773-.24-.388A9.94 9.94 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Enviar WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <p>© 2025 <span>Innova CRM</span> · Sistemas Inteligentes a Medida · Edgar · Guadalajara, México</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mouse-tracking glow on project cards
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mx', x + '%');
+        card.style.setProperty('--my', y + '%');
+      });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.project-card, .service-card, .stat').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.6s cubic-bezier(.22,1,.36,1), transform 0.6s cubic-bezier(.22,1,.36,1)';
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
