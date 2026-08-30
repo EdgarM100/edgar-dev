@@ -481,7 +481,6 @@ function nextStep(current){
   document.getElementById('step'+next).classList.add('active');
   buildDots(next);
   updateProgress(next);
-  window.scrollTo({top:document.getElementById('formBox').offsetTop-100, behavior:'smooth'});
 }
 
 function prevStep(current){
@@ -490,7 +489,6 @@ function prevStep(current){
   document.getElementById('step'+prev).classList.add('active');
   buildDots(prev);
   updateProgress(prev);
-  window.scrollTo({top:document.getElementById('formBox').offsetTop-100, behavior:'smooth'});
 }
 
 function calcScore(){
@@ -543,7 +541,6 @@ function submitForm(){
   }
 
   sendDiagnosticEmail(nombre, email, tel, answers);
-  window.scrollTo({top:document.getElementById('formBox').offsetTop-100, behavior:'smooth'});
 }
 
 function sendDiagnosticEmail(nombre, email, tel, datos){
