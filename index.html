@@ -12,16 +12,12 @@
   --surface:#ffffff;
   --surface2:#f5f7ff;
   --border:rgba(59,130,246,0.15);
-  --border2:rgba(59,130,246,0.25);
   --accent:#2563eb;
-  --accent2:#4f46e5;
   --gold:#d97706;
   --text:#0f172a;
   --muted:#475569;
   --muted2:#64748b;
   --wa:#25D366;
-  --purple:#7c3aed;
-  --cyan:#0891b2;
   --emerald:#059669;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -75,7 +71,6 @@ section{padding:80px 0}
 .project-card:hover{border-color:rgba(37,99,235,0.35);transform:translateY(-4px);box-shadow:0 20px 60px rgba(37,99,235,0.14)}
 .project-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 50%,#4f46e5 100%);border:none;box-shadow:0 8px 48px rgba(37,99,235,0.3)}
 .project-card.featured h3{color:#fff}
-.project-card.featured>div>p{color:rgba(255,255,255,0.75)}
 .card-icon{width:50px;height:50px;background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.2);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
 .project-card.featured .card-icon{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);margin-bottom:0}
 .card-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#1d4ed8;background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.2);padding:3px 10px;border-radius:100px;margin-bottom:10px}
@@ -143,6 +138,8 @@ section{padding:80px 0}
 .result-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:10px;color:var(--text)}
 .result-text{font-size:14px;color:var(--muted);line-height:1.7;max-width:420px;margin:0 auto 24px}
 .tag-hot{display:inline-block;background:#d1fae5;color:#065f46;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:100px;border:1px solid rgba(5,150,105,0.3);margin-bottom:16px}
+.loading{display:inline-block;width:20px;height:20px;border:3px solid rgba(37,99,235,0.2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-right:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 @media(max-width:700px){
   .projects-grid{grid-template-columns:1fr}
@@ -166,7 +163,6 @@ section{padding:80px 0}
       <a href="#proyectos">Proyectos</a>
       <a href="#servicios">Servicios</a>
       <a href="#diagnostico">Diagnóstico</a>
-      <a href="#contacto">Contacto</a>
     </div>
     <a class="btn btn-primary" href="https://wa.me/523339732375" target="_blank" style="padding:10px 20px;font-size:13px;">Hablar ahora</a>
   </div>
@@ -205,8 +201,8 @@ section{padding:80px 0}
           <div class="card-icon">🏭</div>
           <div class="card-tag">CRM Innova</div>
           <h3>Innova CRM</h3>
-          <p>Sistema completo para gestionar clientes, proyectos, cotizaciones y seguimiento de procesos. Centraliza la operación en Google Workspace.</p>
-          <a class="btn btn-primary" href="https://script.google.com/macros/s/AKfycbxW3z1UOPlkr4dJw0GtYV46V2viA8HQlVqtCGWpvSGDzv8w7tg2vGT9B5PE-Vn681eNpA/exec" target="_blank">Ver sistema en vivo →</a>
+          <p>Sistema completo para gestionar clientes, proyectos, cotizaciones y seguimiento de procesos.</p>
+          <a class="btn btn-primary" href="#" target="_blank">Ver sistema en vivo →</a>
         </div>
         <div>
           <ul class="card-features">
@@ -224,14 +220,14 @@ section{padding:80px 0}
         <div class="card-icon">📋</div>
         <div class="card-tag">Gestión Operativa</div>
         <h3>Trámites de Gestoría</h3>
-        <p>Sistema de gestión para trámites con seguimiento operativo por etapas, asignación de responsables y control de estatus en tiempo real.</p>
+        <p>Sistema de gestión para trámites con seguimiento operativo por etapas, asignación de responsables.</p>
       </div>
 
       <div class="project-card">
         <div class="card-icon">⚙️</div>
         <div class="card-tag">Automatización</div>
         <h3>¿Tu sistema aquí?</h3>
-        <p>Cada negocio tiene procesos únicos. Diseño sistemas 100% a la medida de tu operación, sin herramientas genéricas que no encajan.</p>
+        <p>Cada negocio tiene procesos únicos. Diseño sistemas 100% a la medida sin herramientas genéricas.</p>
         <a class="btn btn-ghost" href="https://wa.me/523339732375" target="_blank" style="font-size:13px;padding:10px 18px;">Platícame tu idea →</a>
       </div>
 
@@ -250,11 +246,11 @@ section{padding:80px 0}
     </div>
     <div class="services-grid">
       <div class="service-card"><span class="service-icon">📋</span><h4>CRMs a medida</h4><p>Sistemas de gestión de clientes, ventas y seguimiento adaptados a tu proceso comercial.</p></div>
-      <div class="service-card"><span class="service-icon">⚡</span><h4>Automatización de procesos</h4><p>Elimina tareas repetitivas con flujos automáticos en Google Apps Script y Google Workspace.</p></div>
-      <div class="service-card"><span class="service-icon">📊</span><h4>Dashboards y reportes</h4><p>Paneles de control con datos en tiempo real conectados a tus hojas de cálculo existentes.</p></div>
+      <div class="service-card"><span class="service-icon">⚡</span><h4>Automatización de procesos</h4><p>Elimina tareas repetitivas con flujos automáticos en Google Apps Script.</p></div>
+      <div class="service-card"><span class="service-icon">📊</span><h4>Dashboards y reportes</h4><p>Paneles de control con datos en tiempo real conectados a tus hojas de cálculo.</p></div>
       <div class="service-card"><span class="service-icon">📬</span><h4>Notificaciones inteligentes</h4><p>Alertas automáticas por correo, WhatsApp o Telegram en los momentos que importan.</p></div>
       <div class="service-card"><span class="service-icon">🗂️</span><h4>Gestión documental</h4><p>Generación automática de contratos, cotizaciones y reportes con datos de tus formularios.</p></div>
-      <div class="service-card"><span class="service-icon">🔗</span><h4>Integraciones Google</h4><p>Conecta Forms, Sheets, Drive, Gmail y Calendar en un solo sistema coherente y eficiente.</p></div>
+      <div class="service-card"><span class="service-icon">🔗</span><h4>Integraciones Google</h4><p>Conecta Forms, Sheets, Drive, Gmail y Calendar en un solo sistema coherente.</p></div>
     </div>
   </div>
 </section>
@@ -268,11 +264,11 @@ section{padding:80px 0}
       <div style="text-align:center;margin-bottom:44px">
         <div class="lm-urgency">⚡ Diagnóstico gratuito — 5 minutos</div>
         <h2>Escáner de Fugas de Capital<span><br>Descubre cuánto dinero invisible pierdes.</span></h2>
-        <p>¿Tus cotizaciones se pierden en WhatsApp? ¿Clientes que nunca se cerraron? Responde 5 preguntas y te revelamos exactamente dónde está la fuga en tu operación.</p>
+        <p>¿Tus cotizaciones se pierden en WhatsApp? Responde 6 preguntas y te revelamos exactamente dónde está la fuga.</p>
         <div class="lm-benefits">
-          <div class="lm-benefit"><div class="icon">🔍</div><h4>Diagnóstico real</h4><p>Análisis basado en tu operación actual</p></div>
-          <div class="lm-benefit"><div class="icon">⏱️</div><h4>5 minutos</h4><p>Preguntas concretas, resultado inmediato</p></div>
-          <div class="lm-benefit"><div class="icon">🎯</div><h4>Plan a medida</h4><p>Si calificas, sesión de 30 min gratis</p></div>
+          <div class="lm-benefit"><div class="icon">🔍</div><h4>Diagnóstico real</h4><p>Análisis basado en tu operación</p></div>
+          <div class="lm-benefit"><div class="icon">⏱️</div><h4>5 minutos</h4><p>Resultado inmediato y accionable</p></div>
+          <div class="lm-benefit"><div class="icon">🎯</div><h4>Plan a medida</h4><p>Sesión de diagnóstico gratis</p></div>
         </div>
       </div>
 
@@ -284,13 +280,13 @@ section{padding:80px 0}
           <div class="step-indicator" id="dots1"></div>
           <div class="step-header">
             <div class="step-q">¿Cuál es tu rol en el negocio?</div>
-            <div class="step-hint">Queremos asegurarnos de hablar con quien toma decisiones.</div>
+            <div class="step-hint">Queremos hablar con quien toma decisiones.</div>
           </div>
           <div class="options-grid">
-            <button class="opt" onclick="selectOpt(this,'rol','dueno',1)"><div class="opt-radio"></div><span>Dueño / Director General</span></button>
+            <button class="opt" onclick="selectOpt(this,'rol','dueno',1)"><div class="opt-radio"></div><span>Dueño / Director</span></button>
             <button class="opt" onclick="selectOpt(this,'rol','gerente',1)"><div class="opt-radio"></div><span>Gerente Operativo</span></button>
             <button class="opt disqualify" onclick="selectOpt(this,'rol','empleado',1)"><div class="opt-radio"></div><span>Empleado</span></button>
-            <button class="opt disqualify" onclick="selectOpt(this,'rol','curioso',1)"><div class="opt-radio"></div><span>Estudiante / Solo explorando</span></button>
+            <button class="opt disqualify" onclick="selectOpt(this,'rol','curioso',1)"><div class="opt-radio"></div><span>Explorando</span></button>
           </div>
           <div class="step-nav"><span></span><button class="btn btn-ghost" id="next1" onclick="nextStep(1)" style="opacity:0.4;cursor:not-allowed;font-size:13px;padding:10px 20px;" disabled>Siguiente →</button></div>
         </div>
@@ -299,13 +295,13 @@ section{padding:80px 0}
         <div class="step" id="step2">
           <div class="step-indicator" id="dots2"></div>
           <div class="step-header">
-            <div class="step-q">¿Cuál es tu mayor obstáculo para crecer hoy?</div>
+            <div class="step-q">¿Cuál es tu mayor obstáculo?</div>
             <div class="step-hint">Elige el que más te representa.</div>
           </div>
           <div class="options-grid" style="grid-template-columns:1fr">
-            <button class="opt" onclick="selectOpt(this,'obstaculo','todo_yo',2)"><div class="opt-radio"></div><span>Todo depende de mí — soy el cuello de botella</span></button>
-            <button class="opt" onclick="selectOpt(this,'obstaculo','dinero_perdido',2)"><div class="opt-radio"></div><span>Perdemos dinero por falta de seguimiento</span></button>
-            <button class="opt" onclick="selectOpt(this,'obstaculo','caos',2)"><div class="opt-radio"></div><span>El caos en WhatsApp y Excel nos rebasó</span></button>
+            <button class="opt" onclick="selectOpt(this,'obstaculo','todo_yo',2)"><div class="opt-radio"></div><span>Todo depende de mí</span></button>
+            <button class="opt" onclick="selectOpt(this,'obstaculo','dinero_perdido',2)"><div class="opt-radio"></div><span>Perdemos dinero en seguimiento</span></button>
+            <button class="opt" onclick="selectOpt(this,'obstaculo','caos',2)"><div class="opt-radio"></div><span>Caos en WhatsApp y Excel</span></button>
           </div>
           <div class="step-nav"><button class="btn btn-ghost" onclick="prevStep(2)" style="font-size:13px;padding:10px 20px;">← Atrás</button><button class="btn btn-ghost" id="next2" onclick="nextStep(2)" style="opacity:0.4;cursor:not-allowed;font-size:13px;padding:10px 20px;" disabled>Siguiente →</button></div>
         </div>
@@ -314,14 +310,14 @@ section{padding:80px 0}
         <div class="step" id="step3">
           <div class="step-indicator" id="dots3"></div>
           <div class="step-header">
-            <div class="step-q">¿Cuántas personas integran tu equipo?</div>
-            <div class="step-hint">Esto nos ayuda a dimensionar la solución.</div>
+            <div class="step-q">¿Cuántas personas en tu equipo?</div>
+            <div class="step-hint">Esto nos ayuda a dimensionar.</div>
           </div>
           <div class="options-grid">
             <button class="opt" onclick="selectOpt(this,'equipo','solo',3)"><div class="opt-radio"></div><span>Solo yo</span></button>
             <button class="opt" onclick="selectOpt(this,'equipo','pequeno',3)"><div class="opt-radio"></div><span>2 – 5 personas</span></button>
             <button class="opt" onclick="selectOpt(this,'equipo','mediano',3)"><div class="opt-radio"></div><span>6 – 15 personas</span></button>
-            <button class="opt" onclick="selectOpt(this,'equipo','grande',3)"><div class="opt-radio"></div><span>Más de 15 personas</span></button>
+            <button class="opt" onclick="selectOpt(this,'equipo','grande',3)"><div class="opt-radio"></div><span>Más de 15</span></button>
           </div>
           <div class="step-nav"><button class="btn btn-ghost" onclick="prevStep(3)" style="font-size:13px;padding:10px 20px;">← Atrás</button><button class="btn btn-ghost" id="next3" onclick="nextStep(3)" style="opacity:0.4;cursor:not-allowed;font-size:13px;padding:10px 20px;" disabled>Siguiente →</button></div>
         </div>
@@ -330,8 +326,8 @@ section{padding:80px 0}
         <div class="step" id="step4">
           <div class="step-indicator" id="dots4"></div>
           <div class="step-header">
-            <div class="step-q">¿En cuál de estos rubros opera tu negocio?</div>
-            <div class="step-hint">Esto nos ayuda a personalizar la solución.</div>
+            <div class="step-q">¿En cuál rubro opera tu negocio?</div>
+            <div class="step-hint">Para personalizar la solución.</div>
           </div>
           <div class="options-grid">
             <button class="opt" onclick="selectOpt(this,'rubro','gestorias',4)"><div class="opt-radio"></div><span>📋 Gestorías / Trámites</span></button>
@@ -347,11 +343,11 @@ section{padding:80px 0}
           <div class="step-indicator" id="dots5"></div>
           <div class="step-header">
             <div class="step-q">¿Qué tipo de solución buscas?</div>
-            <div class="step-hint">Sé honesto — queremos darte exactamente lo que necesitas.</div>
+            <div class="step-hint">Sé honesto.</div>
           </div>
           <div class="options-grid" style="grid-template-columns:1fr">
-            <button class="opt disqualify" onclick="selectOpt(this,'solucion','gratis',5)"><div class="opt-radio"></div><span>Una herramienta gratuita o barata para probar</span></button>
-            <button class="opt" onclick="selectOpt(this,'solucion','transformacion',5)"><div class="opt-radio"></div><span>Una transformación real y profesional</span></button>
+            <button class="opt disqualify" onclick="selectOpt(this,'solucion','gratis',5)"><div class="opt-radio"></div><span>Herramienta gratuita</span></button>
+            <button class="opt" onclick="selectOpt(this,'solucion','transformacion',5)"><div class="opt-radio"></div><span>Transformación profesional real</span></button>
           </div>
           <div class="step-nav"><button class="btn btn-ghost" onclick="prevStep(5)" style="font-size:13px;padding:10px 20px;">← Atrás</button><button class="btn btn-ghost" id="next5" onclick="nextStep(5)" style="opacity:0.4;cursor:not-allowed;font-size:13px;padding:10px 20px;" disabled>Siguiente →</button></div>
         </div>
@@ -360,13 +356,13 @@ section{padding:80px 0}
         <div class="step" id="step6">
           <div class="step-indicator" id="dots6"></div>
           <div class="step-header">
-            <div class="step-q">¿Qué tan pronto necesitas resolver esto?</div>
-            <div class="step-hint">La urgencia real define qué tan rápido podemos actuar.</div>
+            <div class="step-q">¿Qué tan pronto lo necesitas?</div>
+            <div class="step-hint">Esto define nuestro timeline.</div>
           </div>
           <div class="options-grid" style="grid-template-columns:1fr">
-            <button class="opt" onclick="selectOpt(this,'urgencia','ya',6)"><div class="opt-radio"></div><span>Lo antes posible — tengo fugas activas ahora</span></button>
-            <button class="opt" onclick="selectOpt(this,'urgencia','pronto',6)"><div class="opt-radio"></div><span>En los próximos 30 días</span></button>
-            <button class="opt disqualify" onclick="selectOpt(this,'urgencia','explorando',6)"><div class="opt-radio"></div><span>Solo estoy explorando opciones</span></button>
+            <button class="opt" onclick="selectOpt(this,'urgencia','ya',6)"><div class="opt-radio"></div><span>Lo antes posible</span></button>
+            <button class="opt" onclick="selectOpt(this,'urgencia','pronto',6)"><div class="opt-radio"></div><span>Próximos 30 días</span></button>
+            <button class="opt disqualify" onclick="selectOpt(this,'urgencia','explorando',6)"><div class="opt-radio"></div><span>Solo explorando</span></button>
           </div>
           <div class="step-nav"><button class="btn btn-ghost" onclick="prevStep(6)" style="font-size:13px;padding:10px 20px;">← Atrás</button><button class="btn btn-ghost" id="next6" onclick="nextStep(6)" style="opacity:0.4;cursor:not-allowed;font-size:13px;padding:10px 20px;" disabled>Siguiente →</button></div>
         </div>
@@ -375,8 +371,8 @@ section{padding:80px 0}
         <div class="step" id="step7">
           <div class="step-indicator" id="dots7"></div>
           <div class="step-header">
-            <div class="step-q">¡Casi listo! ¿Cómo te contactamos?</div>
-            <div class="step-hint">Email + WhatsApp. Te contactamos en menos de 24 horas.</div>
+            <div class="step-q">¿Cómo te contactamos?</div>
+            <div class="step-hint">Email + WhatsApp. En menos de 24 horas.</div>
           </div>
           <div class="input-group">
             <input type="text" id="inp_nombre" placeholder="Tu nombre completo" autocomplete="off">
@@ -384,7 +380,7 @@ section{padding:80px 0}
             <input type="tel" id="inp_tel" placeholder="WhatsApp (ej: 333 123 4567)" autocomplete="off">
             <input type="text" id="inp_negocio" placeholder="Nombre de tu negocio (opcional)" autocomplete="off">
           </div>
-          <div class="step-nav" style="margin-top:20px"><button class="btn btn-ghost" onclick="prevStep(7)" style="font-size:13px;padding:10px 20px;">← Atrás</button><button class="btn btn-gold" onclick="submitForm()" style="font-size:14px;padding:13px 28px;cursor:pointer;">Recibir mi diagnóstico →</button></div>
+          <div class="step-nav" style="margin-top:20px"><button class="btn btn-ghost" onclick="prevStep(7)" style="font-size:13px;padding:10px 20px;">← Atrás</button><button class="btn btn-gold" id="submitBtn" onclick="submitForm()" style="font-size:14px;padding:13px 28px;cursor:pointer;"><span id="btnText">Recibir mi diagnóstico →</span></button></div>
         </div>
 
         <!-- RESULTADO HOT -->
@@ -392,51 +388,26 @@ section{padding:80px 0}
           <div class="result-hot">
             <div class="tag-hot">Prospecto prioritario</div>
             <div class="result-icon">🔥</div>
-            <div class="result-title" id="hotTitle">¡Perfecto, tienes un problema que podemos resolver!</div>
-            <div class="result-text">Basado en tus respuestas, tu negocio tiene fugas de capital que podemos blindar en menos de 21 días. Te contactamos HOY.</div>
-            <a class="btn btn-wa" href="https://wa.me/523339732375?text=Hola%2C%20hice%20el%20escaneo%20de%20fugas%20de%20capital%20y%20quiero%20mi%20diagn%C3%B3stico" target="_blank" style="margin:0 auto;display:inline-flex;font-size:15px;padding:14px 32px;">
-              Agendar mi sesión gratuita →
+            <div class="result-title" id="hotTitle">¡Perfecto, tienes un problema que resolvemos!</div>
+            <div class="result-text">Basado en tus respuestas, tu negocio tiene fugas de capital activas que blindamos en menos de 21 días. Nos contactamos HOY.</div>
+            <a class="btn btn-wa" href="https://wa.me/523339732375" target="_blank" style="margin:0 auto;display:inline-flex;font-size:15px;padding:14px 32px;">
+              Agendar sesión gratuita →
             </a>
           </div>
         </div>
 
         <!-- RESULTADO FRÍO -->
         <div class="result-screen" id="resultCold">
-          <div class="result-cold" style="background:#eff6ff;border:1px solid rgba(37,99,235,0.2);">
-            <div style="display:inline-block;background:#fef3c7;color:#92400e;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:100px;border:1px solid rgba(217,119,6,0.3);margin-bottom:16px;">Recurso enviado</div>
-            <div class="result-icon">📄</div>
-            <div class="result-title">Tu guía está en camino</div>
-            <div class="result-text">Te enviamos el PDF "El Mapa de 21 Días" con pasos para empezar a organizar tu operación. Cuando estés listo, nos contactas.</div>
-            <a class="btn btn-ghost" href="https://wa.me/523339732375" target="_blank" style="margin:0 auto;display:inline-flex;font-size:14px;">Escribir cuando esté listo →</a>
+          <div class="result-cold">
+            <div style="display:inline-block;background:#fef3c7;color:#92400e;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:100px;border:1px solid rgba(217,119,6,0.3);margin-bottom:16px;">Diagnóstico recibido</div>
+            <div class="result-icon">✅</div>
+            <div class="result-title">¡Listo! Recibimos tu información</div>
+            <div class="result-text">Te enviaremos un email con tu diagnóstico personalizado. Revisa tu bandeja en los próximos minutos.</div>
+            <a class="btn btn-wa" href="https://wa.me/523339732375" target="_blank" style="margin:0 auto;display:inline-flex;font-size:14px;">O escríbenos por WhatsApp →</a>
           </div>
         </div>
 
       </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- EMAIL CONTACT -->
-<section id="contacto">
-  <div class="wrap">
-    <div class="section-header">
-      <div class="section-tag">Contáctanos</div>
-      <h2>Cuéntanos tu proyecto</h2>
-      <p>Escribe un mensaje y te respondemos a la brevedad</p>
-    </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:60px 44px;text-align:center;position:relative;overflow:hidden;box-shadow:0 4px 32px rgba(37,99,235,0.07)">
-      <form id="contactForm" onsubmit="submitContactForm(event)">
-        <div style="display:flex;flex-direction:column;gap:12px;max-width:480px;margin:0 auto 28px">
-          <input type="text" id="contactNombre" placeholder="Tu nombre" required autocomplete="off" style="font-family:'DM Sans',sans-serif;font-size:14px;padding:13px 16px;border-radius:10px;border:1.5px solid rgba(37,99,235,0.18);background:var(--surface);color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s">
-          <input type="email" id="contactEmail" placeholder="Tu email" required autocomplete="off" style="font-family:'DM Sans',sans-serif;font-size:14px;padding:13px 16px;border-radius:10px;border:1.5px solid rgba(37,99,235,0.18);background:var(--surface);color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s">
-          <input type="text" id="contactAsunto" placeholder="Asunto" required autocomplete="off" style="font-family:'DM Sans',sans-serif;font-size:14px;padding:13px 16px;border-radius:10px;border:1.5px solid rgba(37,99,235,0.18);background:var(--surface);color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s">
-          <textarea id="contactMensaje" placeholder="Cuéntanos de tu proyecto..." required style="font-family:'DM Sans',sans-serif;font-size:14px;padding:13px 16px;border-radius:10px;border:1.5px solid rgba(37,99,235,0.18);background:var(--surface);color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s;min-height:100px;resize:none"></textarea>
-          <button type="submit" class="btn btn-primary" style="justify-content:center;cursor:pointer;font-size:15px;">Enviar mensaje →</button>
-        </div>
-        <div id="formStatus" style="font-size:13px;text-align:center;min-height:20px;font-weight:500;margin-top:8px;color:#059669"></div>
-      </form>
     </div>
   </div>
 </section>
@@ -448,7 +419,7 @@ section{padding:80px 0}
 <script>
 var answers={};
 var totalSteps=7;
-const RECIPIENT_EMAIL = "tu_email@gmail.com"; // ⚠️ REEMPLAZA CON TU EMAIL
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxD8atWqPuTd5wsBR8-xPx2svauZ1aI9sw70N5wyb1UjYzMphjRqvbrXTz_J9aopWD-/usercopy";
 
 function buildDots(stepNum){
   var d=document.getElementById('dots'+stepNum);
@@ -507,18 +478,18 @@ function calcScore(){
   return{score:score,disq:disq};
 }
 
-function submitForm(){
+async function submitForm(){
   var nombre=document.getElementById('inp_nombre').value.trim();
   var email=document.getElementById('inp_email').value.trim();
   var tel=document.getElementById('inp_tel').value.trim();
   
   if(!nombre||!email||!tel){
-    alert('Por favor ingresa tu nombre, email y WhatsApp.');
+    alert('Por favor completa nombre, email y WhatsApp.');
     return;
   }
 
   if(!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)){
-    alert('Por favor ingresa un email válido.');
+    alert('Email inválido.');
     return;
   }
 
@@ -527,57 +498,44 @@ function submitForm(){
   answers.tel=tel;
   answers.negocio=document.getElementById('inp_negocio').value.trim();
 
-  var r=calcScore();
-  
-  document.getElementById('step7').classList.remove('active');
-  document.getElementById('progressFill').style.width='100%';
+  // Mostrar loading
+  var submitBtn=document.getElementById('submitBtn');
+  var btnText=document.getElementById('btnText');
+  submitBtn.disabled=true;
+  btnText.innerHTML='<span class="loading"></span>Enviando...';
 
-  if(!r.disq&&r.score>=5){
-    var t=document.getElementById('hotTitle');
-    t.textContent='¡'+nombre+', tienes un problema que podemos resolver!';
-    document.getElementById('resultHot').classList.add('show');
-  } else {
-    document.getElementById('resultCold').classList.add('show');
+  try {
+    // Enviar a Google Apps Script
+    const response = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(answers)
+    });
+
+    const result = await response.json();
+
+    if(result.success){
+      // Ocultar formulario
+      document.getElementById('step7').classList.remove('active');
+      document.getElementById('progressFill').style.width='100%';
+
+      // Mostrar resultado
+      var r = calcScore();
+      if(!r.disq&&r.score>=5){
+        document.getElementById('resultHot').classList.add('show');
+      } else {
+        document.getElementById('resultCold').classList.add('show');
+      }
+    } else {
+      alert('Error: '+result.error);
+      submitBtn.disabled=false;
+      btnText.innerHTML='Recibir mi diagnóstico →';
+    }
+  } catch(error){
+    console.error('Error:', error);
+    alert('Error de conexión. Intenta de nuevo.');
+    submitBtn.disabled=false;
+    btnText.innerHTML='Recibir mi diagnóstico →';
   }
-
-  sendDiagnosticEmail(nombre, email, tel, answers);
-}
-
-function sendDiagnosticEmail(nombre, email, tel, datos){
-  var emailBody = `Nuevo Diagnóstico:\n\n`;
-  emailBody += `Nombre: ${nombre}\n`;
-  emailBody += `Email: ${email}\n`;
-  emailBody += `WhatsApp: ${tel}\n`;
-  emailBody += `Negocio: ${datos.negocio || 'No especificado'}\n`;
-  emailBody += `Rubro: ${datos.rubro}\n`;
-  emailBody += `Rol: ${datos.rol}\n`;
-  emailBody += `Obstáculo: ${datos.obstaculo}\n`;
-  emailBody += `Equipo: ${datos.equipo}\n`;
-  emailBody += `Solución: ${datos.solucion}\n`;
-  emailBody += `Urgencia: ${datos.urgencia}\n`;
-
-  window.location.href = `mailto:${RECIPIENT_EMAIL}?subject=Nuevo%20Diagnóstico%20-%20${encodeURIComponent(nombre)}&body=${encodeURIComponent(emailBody)}`;
-}
-
-function submitContactForm(event){
-  event.preventDefault();
-  
-  var nombre = document.getElementById('contactNombre').value.trim();
-  var email = document.getElementById('contactEmail').value.trim();
-  var asunto = document.getElementById('contactAsunto').value.trim();
-  var mensaje = document.getElementById('contactMensaje').value.trim();
-
-  var body = `Nombre: ${nombre}\nEmail: ${email}\n\n${mensaje}`;
-  var subject = asunto;
-
-  window.location.href = `mailto:info@innovavoice.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-  var st=document.getElementById('formStatus');
-  st.textContent='✓ Abriendo tu cliente de correo...';
-  setTimeout(function(){
-    document.getElementById('contactForm').reset();
-    st.textContent='';
-  }, 3000);
 }
 
 buildDots(1);
